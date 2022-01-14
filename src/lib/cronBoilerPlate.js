@@ -1,4 +1,5 @@
-const { executable } = require('../../config')
+// const { executable } = require('../../config')
+const executable = ''
 
 // helper so I don't have to add the boilerplate each time
 // cronBoilerPlate([foo, bar]) === `foo bash -etc 'bar' > /tmp/bar.out 2&! # comment`

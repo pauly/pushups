@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" content="Push up challenge app, and maybe more.">
+    <meta name="Keywords" content="exercise, pushups, app, paul clarke, pauly">
+    <title>💪 pushups</title>
+    <link rel="preconnect" href="https://accounts.google.com">
+    <link rel="preconnect" href="https://ssl.gstatic.com">
+    <link rel="preconnect" href="https://content.googleapis.com">
+    <link rel="preconnect" href="https://apis.google.com">
+    <link rel="icon" type="image/x-icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADo+/8AcJTLADtg0wCbtvkAkcvwAC9PqgA8br4A/P3YADxzuwAsKy4Au8z7AHKW0QD32sEAaZfmAPf5+QCdxPYA8t/QADJLwgBDZtMAwdP1AIyr6wA8augAPk6wAHCi4wA9V7AAU5PkADBLhACpxP8ALjlGAHek6QAkNHYAIDCFADdjywAyUJMAHyhBABsrSgCy0P8ARojfADxi2gA1SMMAT5HfAC4zPgD//f0AJS5lADRGfwCukIEAOV26AK2WigA0Q5oADylXAFmU8QCgg3YAUn/OAKaHeQBPjtcAHjdLAHCa3wA4TrIAKzuMAEN2vQANGUMAbpTxAB41VwAkN0sANX3bACM4TgAmOVEARG3hALTM2gAuRpIAd6LlAFSe2gD47tIAQ37VAD6D5AA/h94Aw+39ABcsRgARFCMAi3FmACs4ewBMjs8Aq7nYAFR+1QBgm/UAAQMVAFR8iAAPGTsAg673ADVRvAAgN1UAWFloAJCj+gCqj4AATaXVAHWb7ABVlt4AfKrIACo2UgCbfmkAUZPwAFuU2AAxQpkAKDtYACU3ZwA8W10ACw4kABk6ggAwTpkAhJ3pAEGK3wAYLUoANjtYAB8wSgA2OGoAVpG+ALehkgA1R8MAMUB5AGuV9gCrq6cA+fz9ABkzZQAeKWsAITVZAEpGTAB+o88AJThZAAsLJQA9Z64AOkqFAChAXwAYJU4APFrPAJ2FdgAhKDwAQGW6ACs3cQB8qfMAOni0ACg/dwCu4fcAJzuGAFWI0QCa0uYAbp3ZAMa1swBwndkA9v77AF5VVQCReW4ALkCDABUzeACsra4AIy1vADFCkgCZfXEAqsf7ACMucgBzpusAR4PDAMOqkwCy1NoAVIhDACc6YABPf8AAQ37hAAcVKQCwy/4AO1jTAGNkZwBBi9sANkKkABUqVQBbecAAiKTcAPj74QCQkI8AtNf1ACU0jQA1cNMAS4neAK+dowAoN40AN0lgAPv9+QA9iLgATJLnAHGQ+wCoxfYAOkdsAChJnwDi9vcAnHxvAHeVnwAySZYALTleAJyu+gCTvfoAM2vXAH6m9QBJid8AOG3UAGGr4QAKG0UAZYS+AEF0zgD548gAhI55ADNEfwBKgrAAwd/8ADxVugA1M0QAeaPkAGiO0wAWJksAyqWYAEh1KADErZ4ALjtcAFyk1gBPg8UAODxEAGWb1gA8YcwAapfTADta2wBLiNQAPj1HAK2fmQCmpqUApa/+ACc9hgCev/gA+dnGAJfJ+wCKqfYAMD2GAJF9awAxVMEAQn29AFyPzgDy7dUANmOvAF+I3QA/T7sAOlTBADhIegAKEx0AGyNDAJyp9gAtPFcALDdjAGKWHwBXgbcA63RihSebdu45dRbMlZzBTwzbvcpmg00aWivjhH2WXTPP5hvhb873ILTcPq3lL4YtSLYkcY+yX+2fij8j1TVj2QeSTDcP6rVkSUDDQofvodKwEHC4WJ3F6Lymx5eCopBEKvO+IVSv7KDLrCbUS2dz9NrQR0USLATdXgbYmKvJuov+aRdrMbMetzrRpL+7YGGNo1aT8H9sBWh8/PgVbjZQzbk0kRme9i7pjqkfSiVliQGU4BTEmnvGdz0yQ1wNOIHIANZOgGpXUnkTC/tt1+II9dNGKbHnVXrAClNZEYhROwKufvmZqqc8qAP9clsY8f/6IsIJDnjfHPIdMIwo5N6lQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=">
+    <meta name="theme-color" content="#ded">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="💪 pushup challenge counter">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pauly">
+    <meta name="twitter:creator" content="@pauly">
+    <meta name="twitter:url" content="https://pauly.github.io/pushups/#">
+    <meta name="twitter:title" content="💪 pushup challenge counter">
+    <meta name="twitter:description" content="💪 count pushups or other arbitrary challenges">
+    <style>
+      body{margin:0;font-size:1.2em}
+      h1,h2,html{font-family:arial,verdana,sans-serif;font-size:1em}
+      div,form{border:1px #ddd solid;border-radius:15px;line-height:1.5em;margin:1em;padding:0 1em;background-color:#f9f9f9;max-width:100%}
+      p{margin:1em 0}
+      a{font-weight:700;color:#60c;margin:1em 1em 1em 0;text-decoration:none}
+      h2{background:linear-gradient(#ded,#f9f9f9);border:1px solid #ddd;border-bottom:0;font-size:1.1em;margin:-1px -20px 0;padding:.5em .5em .5em 1em;border-radius:15px 15px 0 0}
+    </style>
+    <link rel="canonical" href="https://pauly.github.io/pushups/">
+    <style>
+      body>h1,
+      form>label {
+        display: block;
+      }
+      button {
+        color: #fff;
+        background-color: #60c;
+        font-size: 1.2em;
+        border: 1px #ddd solid;
+        border-radius: 10px;
+      }
+      button, input {
+        line-height: 1.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        margin: 0.5em 0 0.5em;
+      }
+      ul, li {
+        list-style: none;
+        padding: 0 0 0.5em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1><a href="#">🏠 home</a></h1>
+    </div>
+    <form id="challenge" style="display: none">
+      <label>
+        Name
+        <input id="name" placeholder="ie. pushups">
+      </label>
+      <button id="addChallenge">Submit</button>
+    </form>
+    <form id="activity" style="display: none">
+      <label>
+        <input id="number" type="number" value="10" placeholder="ie. 10">
+      </label>
+      <button id="addActivity">Submit</button>
+    </form>
+    <div id="content">Loading...</div>
+    <div>
+      <button id="authorise" style="display: none;">Link your google calendar</button>
+    </div>
+    <div>
+      <h2>Wat?</h2>
+      <ul>
+        <li>We're doing a pushup challenge, let's count pushups here</li>
+        <li>This (optionally) hacks on google calendar, events that look like "💪pushups 10" will count</li>
+        <li>By <a href="http://www.clarkeology.com/blog/">Paul Clarke</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Privacy / security</h2>
+      <ul>
+        <li>None of your data is stored in this system, only in your own google calendar, and only if you give permissions</li>
+        <li>The permissions to manage your calendar are only to let you manage events in your own calendar from this page</li>
+        <li>Google sets cookies in order to keep you signed in and remember your preferences, this page does not</li>
+        <li id="signout"><a href="#signout">Click here to sign out</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
