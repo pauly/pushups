@@ -54,7 +54,7 @@ const config = module.exports = {
     library: '[name]',
     filename: '[name].js',
     sourceMapFilename: '[name].map',
-    path: path.resolve('./dist'),
+    path: path.resolve('./docs'),
     publicPath
   },
 
