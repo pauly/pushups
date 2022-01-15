@@ -10,10 +10,12 @@
   "branches": 75,
   "functions": 75,
   "exclude": [
+    "config.js",
+    "coverage",
+    "docs",
     "src/server.js",
     "src/lib/index.js",
     "src/lib/getEvents.js",
-    "scripts",
-    "coverage"
+    "weback.config.js"
   ]
 }
