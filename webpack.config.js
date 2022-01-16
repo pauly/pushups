@@ -13,8 +13,8 @@ if (process.env.CI_COMMIT_REF_NAME === 'master') env = 'production'
 if (!['development', 'production'].includes(env)) env = 'production'
 
 let publicPath = '/'
-if (process.env.CI_PROJECT_NAME) {
-  publicPath = `/${process.env.CI_PROJECT_NAME}`
+if (env === 'production') {
+  publicPath = `/${process.env.npm_package_name}`
 }
 const scope = publicPath
 
