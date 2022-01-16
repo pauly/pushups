@@ -44,10 +44,6 @@ module.exports = {
   on (element, event, callback) { // like $.on
     element[addEventListener](event, callback, false)
   },
-  /* debug: function() {
-    const console = window.console;
-    console && console.log.apply(console, arguments);
-  }, */
   id: document.getElementById.bind(document),
   tag: _getElementsByTagName,
   get (url, callback, method, request) { // like $.get

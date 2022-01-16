@@ -6,6 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
+const RemoveConsolePlugin = require('remove-console-webpack-plugin')
 
 let env = process.env.NODE_ENV || 'development'
 if (process.env.CIRCLE_BRANCH === 'master') env = 'production'
@@ -107,6 +108,7 @@ config.entry.pushups = path.resolve('./src/')
 config.entry.sw = path.resolve('./src/sw')
 
 if (process.env.MINIFY) {
+  config.plugins.push(new RemoveConsolePlugin({ include: ['*'] }))
   config.optimization.minimize = true
   // if we don't use our own minimizer we can't mangle private props
   config.optimization.minimizer = [
