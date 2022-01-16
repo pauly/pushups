@@ -1,0 +1,23 @@
+{
+  "icons": [
+    {
+      "src": "/pushups/icon_512x512.7dd1e8c24dcb23213a3428430985d8a5.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/pushups/icon_192x192.20c72a27de31978159481d31b68620df.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "😎 Holiday calendar reminder",
+  "short_name": "😎 Reminder",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Holiday packing reminder using your google calendar",
+  "scope": "/pushups",
+  "theme_color": "#ded",
+  "background_color": "#f9f9f9"
+}
