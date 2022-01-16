@@ -46,7 +46,8 @@ const initClient = () => {
 const updateSigninStatus = isSignedIn => {
   id('authorise').style.display = isSignedIn ? 'none' : 'block'
   id('signout').style.display = isSignedIn ? 'list-item' : 'none'
-  isSignedIn ? change() : updateContent()
+  // isSignedIn ? change() : updateContent()
+  change()
 }
 
 /**
@@ -151,14 +152,15 @@ const insertActivity = (calendarId, challenge, number) => {
   const resource = { description, start, end, source, summary }
   delayedInsert(calendarId, resource)
   data.push(resource)
+  console.log('now data is', data)
   store(data)
 }
 
 const addActivity = (challenge, number, callback) => {
-  on(id('addActivity'), 'click', e => {
+  id('addActivity').onclick = e => {
     e.preventDefault()
     addActivity(challenge, id('number').value, callback)
-  })
+  }
   if (!number) {
     id('activity').style.display = 'block'
     return callback(null, 'Add activity', `<p>Add <a href="#challenge/${challenge}">${challenge}</a></p>`)
@@ -192,13 +194,13 @@ const activityListItem = activity => {
 
 const listActivities = (challenge, callback) => {
   getActivities(calendarId, icon + challenge).then(activities => {
-    console.log(challenge, activities)
     const list = activities
       .reduce(activitiesByDate(challenge), [])
       .map(activityListItem).join('')
     const content = `<ul>
       <li><a href="#add/${challenge}">Add ${challenge}</a></li>
       ${list}
+      <li><a href="#about">About</a></li>
       </ul>`
     callback(null, challenge, content)
   })
@@ -209,7 +211,9 @@ const challengeListItem = (challenge) => {
 }
 
 const listChallenges = calendarId => (callback) => {
+  console.log({ calendarId })
   getChallenges(calendarId, icon).then(challenges => {
+    console.log({ challenges })
     if (!challenges.length) {
       const message = `No challenges -
         <a href="#new">Click here to add a new challenge</a>`
@@ -228,14 +232,18 @@ const change = () => {
   // if (!gapi.auth2.getAuthInstance().isSignedIn.get()) return // nothing for you here yet
   const hash = location.hash
   const path = hash.substr(1).split('/')
+  console.log({ path })
   id('challenge').style.display = 'none'
   id('activity').style.display = 'none'
+  id('about').style.display = 'none'
   switch (path[0]) {
     case 'add': return addActivity(path[1], null, updateContent)
     case 'challenge': return listActivities(path[1], updateContent)
     // case 'new': return addChallenge(null, updateContent)
     case 'signout': return signout(updateContent)
+    case 'about': id('about').style.display = 'block'
   }
+  console.log('just list challenges')
   listChallenges(calendarId)(updateContent)
 }
 

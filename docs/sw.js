@@ -82,41 +82,20 @@ var sw =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/sw.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 3:
+/***/ "./src/sw.js":
+/*!*******************!*\
+  !*** ./src/sw.js ***!
+  \*******************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/* global self caches fetch */
-var name = "";
-var path = name ? '/' + name : '';
-var version = '1.0.0';
-var cacheName = name + '-' + version;
-self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(cacheName).then(function (cache) {
-    return cache.addAll([path + '/', path + '/index.html']).then(function () {
-      return self.skipWaiting();
-    });
-  }));
-});
-
-self.addEventListener('activate', function (event) {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', function (event) {
-  event.respondWith(caches.open(cacheName).then(function (cache) {
-    return cache.match(event.request, { ignoreSearch: true });
-  }).then(function (response) {
-    return response || fetch(event.request);
-  }));
-});
+eval("\n\n/* global self caches fetch */\nvar name = \"\";\nvar path = name ? '/' + name : '';\nvar version = '1.0.0';\nvar cacheName = name + '-' + version;\nself.addEventListener('install', function (e) {\n  e.waitUntil(caches.open(cacheName).then(function (cache) {\n    return cache.addAll([path + '/', path + '/index.html']).then(function () {\n      return self.skipWaiting();\n    });\n  }));\n});\n\nself.addEventListener('activate', function (event) {\n  event.waitUntil(self.clients.claim());\n});\n\nself.addEventListener('fetch', function (event) {\n  event.respondWith(caches.open(cacheName).then(function (cache) {\n    return cache.match(event.request, { ignoreSearch: true });\n  }).then(function (response) {\n    return response || fetch(event.request);\n  }));\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/sw.js?");
 
 /***/ })
 
