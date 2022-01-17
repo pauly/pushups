@@ -74,6 +74,7 @@ const config = module.exports = {
     }),
     new HtmlWebpackInlineSourcePlugin(),
     new WebpackPwaManifest({
+      includeDirectory: env === 'production',
       publicPath,
       name: '😎 Holiday calendar reminder',
       short_name: '😎 Reminder',
