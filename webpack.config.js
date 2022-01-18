@@ -70,15 +70,15 @@ const config = module.exports = {
       inject: 'head',
       inlineSource: '.(js|css)$', // embed all javascript and css inline
       template: 'src/index.html',
-      title: '😎 Holiday calendar reminder'
+      title: '💪 pushup challenge'
     }),
     new HtmlWebpackInlineSourcePlugin(),
     new WebpackPwaManifest({
       includeDirectory: env === 'production',
       publicPath,
-      name: '😎 Holiday calendar reminder',
-      short_name: '😎 Reminder',
-      description: 'Holiday packing reminder using your google calendar',
+      name: '💪 pushup challenge',
+      short_name: '💪 pushups',
+      description: 'Pushup challenge counting app. Also other arbitrary challenges.',
       crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
       // start_url: scope,
       scope,

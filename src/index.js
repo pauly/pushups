@@ -46,7 +46,6 @@ const initClient = () => {
 const updateSigninStatus = isSignedIn => {
   id('authorise').style.display = isSignedIn ? 'none' : 'block'
   id('signout').style.display = isSignedIn ? 'list-item' : 'none'
-  // isSignedIn ? change() : updateContent()
   change()
 }
 
@@ -62,7 +61,7 @@ const authorise = e => {
  */
 const signout = callback => {
   gapi.auth2.getAuthInstance().signOut()
-  callback(null, 'Signed you out', '', '', redirectTimeout)
+  callback(null, 'Signed you out', '', '', redirectTimeout * 2)
 }
 
 const updateContent = (err, title = '', message = '', whereNext = '', when) => {
@@ -101,7 +100,13 @@ const getChallenges = (calendarId, q) => {
   })
 }
 
-const getActivities = (calendarId, q, timeMin) => getEvents(calendarId, q, timeMin)
+const getActivities = (calendarId, q, timeMin) => {
+  return getEvents(calendarId, q, timeMin)
+    .then(events => {
+      console.log('compare', events, 'with', getFromStorage(), 'and update if necessary')
+      return events
+    })
+}
 
 /*
 
@@ -152,7 +157,6 @@ const insertActivity = (calendarId, challenge, number) => {
   const resource = { description, start, end, source, summary }
   delayedInsert(calendarId, resource)
   data.push(resource)
-  console.log('now data is', data)
   store(data)
 }
 
@@ -243,7 +247,6 @@ const change = () => {
     case 'signout': return signout(updateContent)
     case 'about': id('about').style.display = 'block'
   }
-  console.log('just list challenges')
   listChallenges(calendarId)(updateContent)
 }
 
