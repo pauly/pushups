@@ -62,7 +62,11 @@
     <form id="challenge" style="display: none">
       <label>
         Name
-        <input id="name" placeholder="ie. pushups">
+        <input id="name" required pattern="[a-z\-]{3}" placeholder="ie. pushups">
+      </label>
+      <label>
+        Summary
+        <input id="summary" placeholder="optional">
       </label>
       <button id="addChallenge">Submit</button>
     </form>

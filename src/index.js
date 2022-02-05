@@ -24,6 +24,10 @@ const store = (value, id = calendarId) => {
 }
 
 const data = getFromStorage() || []
+const challenges = getFromStorage('challenges') || [
+  { id: 'pushups', summary: 'Original January push up challenge' },
+  { id: 'situps', summary: 'February sit up challenge' }
+]
 
 /**
  *  Initialises the API client library and sets up sign-in state
@@ -93,10 +97,7 @@ const getEvents = (calendarId, q, timeMin) => {
 
 const getChallenges = (calendarId, q) => {
   return new Promise((resolve, reject) => {
-    resolve([
-      { id: 'pushups', summary: 'Original pushup challenge' },
-      { id: 'situps', summary: 'Clare\'s situp challenge' }
-    ])
+    resolve(challenges || [])
   })
 }
 
@@ -108,26 +109,25 @@ const getActivities = (calendarId, q, timeMin) => {
     })
 }
 
-/*
+const addChallenge = (name, summary, callback) => {
+  on(id('addChallenge'), 'click', e => {
+    e.preventDefault()
+    addChallenge(id('name').value, id('summary').value, callback)
+  })
 
-on(id('addChallenge'), 'click', e => {
-  e.preventDefault()
-  addChallenge(id('name').value, callback)
-})
-
-const addChallenge = (name, callback) => {
   if (!name) {
     id('challenge').style.display = 'block'
-    return callback(null, 'Add challenge', '<p>Give your new challenge a name and date range below</p>')
+    return callback(null, 'Add challenge', '<p>Give your new challenge a short name, ideally plural (situps, pushups)</p>')
   }
-  const summary = `${name} ${icon}`
-  const start = { dateTime: new Date() }
-  const end = { dateTime: new Date() }
-  const resource = { summary, start, end }
-  gapi.client.calendar.events.insert({ calendarId, resource }).execute(challenge => {
-    callback(null, 'Added challenge', '', `challenge/${challenge.id}`, redirectTimeout)
-  })
-} */
+  // find
+  const existing = challenges.find(challenge => challenge.id === name)
+  if (existing) {
+    return callback(null, `Already got ${name}`, '', `#challenge/${name}`)
+  }
+  challenges.push({ id: name })
+  store(challenges, 'challenges')
+  return callback(null, `Adding ${name}`, '', `#challenge/${name}`)
+}
 
 // keep retrying but with a bigger gap each time
 const delayedInsert = (calendarId, resource, delay = 0) => {
@@ -151,10 +151,10 @@ const insertActivity = (calendarId, challenge, number) => {
   const description = `${number} ${challenge}`
   const dateTime = new Date()
   const start = { dateTime }
-  const end = start
+  // const end = start
   const url = location.origin
   const source = { url, title }
-  const resource = { description, start, end, source, summary }
+  const resource = { description, start, /* end, */ source, summary }
   delayedInsert(calendarId, resource)
   data.push(resource)
   store(data)
@@ -211,7 +211,7 @@ const listActivities = (challenge, callback) => {
 }
 
 const challengeListItem = (challenge) => {
-  return `<li><a href="#challenge/${challenge.id}">${challenge.summary}</a></li>`
+  return `<li><a href="#challenge/${challenge.id}">${challenge.summary || challenge.id}</a></li>`
 }
 
 const listChallenges = calendarId => (callback) => {
@@ -223,10 +223,11 @@ const listChallenges = calendarId => (callback) => {
         <a href="#new">Click here to add a new challenge</a>`
       return callback(message) // in error position
     }
-    if (challenges.length === 1) {
+    /* if (challenges.length === 1) {
       return callback(null, 'Only one event', '<p>Redirecting...</p>', `challenge/${challenges[0].id}`, 500)
-    }
+    } */
     const list = challenges.map(challengeListItem)
+    list.push('<li><a href="#new">Add a challenge</a></li>')
     callback(null, 'Challenges', `<ul>${list.join('')}</ul>`)
   })
 }
@@ -243,7 +244,7 @@ const change = () => {
   switch (path[0]) {
     case 'add': return addActivity(path[1], null, updateContent)
     case 'challenge': return listActivities(path[1], updateContent)
-    // case 'new': return addChallenge(null, updateContent)
+    case 'new': return addChallenge(null, null, updateContent)
     case 'signout': return signout(updateContent)
     case 'about': id('about').style.display = 'block'
   }
