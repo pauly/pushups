@@ -43,7 +43,7 @@
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
     "babel-preset-env": "1.7.0",
-    "chai": "^4.3.4",
+    "chai": "^5.0.0",
     "dirty-chai": "^2.0.1",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^11.0.0",
